@@ -142,6 +142,3 @@ Link.push(2);
 Link.push(3);
 Link.push(4);
 Link.push(5);
-Link.set(0, 0);
-
-console.log(Link);
