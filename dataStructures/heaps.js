@@ -10,23 +10,48 @@ class MaxBinaryHeap {
   }
 
   extractMax() {
-    this.swap(0, this.values.length-1);
-    const oldRoot = this.values.pop();
+    const max = this.values[0];
+    const end = this.values.pop();
 
-    this.sinkDown();
-    return oldRoot;
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.sinkDown();
+    }
+
+    return max;
   }
 
   sinkDown() {
-    let parentIndex = 0;
-    let leftChild = (2*index+1) || null
-    let rightChild = (2*index+2) || null
+    let index = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+    while (true) {
+      let leftChildIndex = 2 * index + 1;
+      let rightChildIndex = 2 * index + 2;
+      let leftChild, rightChild;
+      let swap = null;
 
-    if(this.values[leftChild] > this.values[parentIndex])
-    if(this.values[rightChild] > this.values[parentIndex])
+      if (leftChildIndex < length) {
+        leftChild = this.values[leftChildIndex];
+        if (leftChild > element) {
+          swap = leftChildIndex;
+        }
+      }
 
-    if(this.values[rightChild] > this.values[parentIndex] && this.values[leftChild] > this.values[parentIndex])
-    
+      if (rightChildIndex < length) {
+        rightChild = this.values[rightChildIndex];
+        if (
+          (swap === null && rightChild > element) ||
+          (swap === null && rightChild > leftChild)
+        ) {
+          swap = rightChildIndex;
+        }
+      }
+
+      if (swap === null) break;
+      this.swap(index, swap);
+      index = swap;
+    }
   }
 
   bubbleUp() {
@@ -54,9 +79,8 @@ class MaxBinaryHeap {
 const heap = new MaxBinaryHeap();
 
 heap.insert(10);
-heap.insert(20);
-heap.insert(30);
-heap.insert(100);
-heap.insert(200);
+
+heap.log();
+heap.extractMax();
 
 heap.log();
