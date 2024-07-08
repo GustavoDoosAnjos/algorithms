@@ -75,12 +75,3 @@ class MaxBinaryHeap {
     console.log(this.values);
   }
 }
-
-const heap = new MaxBinaryHeap();
-
-heap.insert(10);
-
-heap.log();
-heap.extractMax();
-
-heap.log();

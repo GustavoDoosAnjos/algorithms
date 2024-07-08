@@ -134,11 +134,3 @@ class DoublyLinkedList {
     return itemToRemove;
   }
 }
-
-const Link = new DoublyLinkedList();
-
-Link.push(1);
-Link.push(2);
-Link.push(3);
-Link.push(4);
-Link.push(5);

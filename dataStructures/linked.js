@@ -144,10 +144,3 @@ class LinkedList {
     return this;
   }
 }
-
-const linked = new LinkedList();
-linked.push(2);
-linked.push(3);
-linked.push(11);
-linked.push(33);
-console.log(linked.reverse());

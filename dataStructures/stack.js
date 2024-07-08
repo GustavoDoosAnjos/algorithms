@@ -39,13 +39,3 @@ class Stack {
     return first.value;
   }
 }
-
-const stack = new Stack();
-
-stack.push(10);
-stack.push(20);
-stack.push(200);
-stack.pop();
-stack.pop();
-stack.pop();
-console.log(stack);

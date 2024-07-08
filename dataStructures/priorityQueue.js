@@ -76,11 +76,3 @@ class PriorityQueue {
     this.values[rightIndex] = temp;
   }
 }
-
-const pq = new PriorityQueue();
-pq.enqueue(10, 10);
-pq.enqueue(9, 9);
-pq.enqueue(1, 1);
-pq.dequeue();
-
-console.log(pq);
