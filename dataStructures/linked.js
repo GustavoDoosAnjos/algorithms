@@ -27,25 +27,24 @@ class LinkedList {
   }
 
   pop() {
-    if (!this.head) return undefined;
-
-    let current = this.head;
-    let newTail = current;
-
-    while (current.next) {
-      newTail = current;
-      current = current.next;
+    if (!this.head) {
+      return undefined;
     }
 
-    this.tail = newTail;
+    let NodeBefore = this.head;
+    let NodeToDelete = NodeBefore.next;
+    while (NodeBefore.next) {
+      NodeBefore = NodeToDelete;
+      NodeToDelete = NodeToDelete.next;
+    }
+    this.tail = NodeBefore;
     this.tail.next = null;
     this.length--;
     if (this.length === 0) {
       this.head = null;
       this.tail = null;
     }
-
-    return current;
+    return NodeToDelete;
   }
 
   shift() {
@@ -144,3 +143,10 @@ class LinkedList {
     return this;
   }
 }
+
+const l = new LinkedList();
+l.push('aids');
+l.push('aids');
+l.push('aids');
+l.pop();
+console.log(l);
