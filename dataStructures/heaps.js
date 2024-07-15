@@ -56,12 +56,14 @@ class MaxBinaryHeap {
 
   bubbleUp() {
     let index = this.values.length - 1;
-    let parentIndex = Math.floor((index - 1) / 2);
+    let element = this.values[index];
 
     while (index > 0) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      let parent = this.values[parentIndex];
+      if (element <= parent) break;
       this.swap(parentIndex, index);
       index = parentIndex;
-      parentIndex = Math.floor((index - 1) / 2);
     }
   }
 
@@ -69,9 +71,5 @@ class MaxBinaryHeap {
     let temp = this.values[leftIndex];
     this.values[leftIndex] = this.values[rightIndex];
     this.values[rightIndex] = temp;
-  }
-
-  log() {
-    console.log(this.values);
   }
 }
