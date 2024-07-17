@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class PriorityQueue {
+export class PriorityQueue {
   constructor() {
     this.values = [];
   }
@@ -15,12 +15,13 @@ class PriorityQueue {
     this.values.push(newNode);
 
     let index = this.values.length - 1;
-    let parentIndex = Math.floor((index - 1) / 2);
+    const element = this.values[index];
     while (index > 0) {
-      if (priority < this.values[parentIndex].priority) {
+      let parentIndex = Math.floor((index - 1) / 2);
+      let parent = this.values[parentIndex];
+      if (element.priority < parent.priority) {
         this.swap(parentIndex, index);
         index = parentIndex;
-        parentIndex = Math.floor((index - 1) / 2);
       } else {
         break;
       }
@@ -41,24 +42,26 @@ class PriorityQueue {
 
   sinkDown() {
     let index = 0;
-    let leftChild, rightChild;
+    const length = this.values.length;
+    const element = this.values[0];
 
     while (true) {
-      let element = this.values[index];
-      let swap = null;
       let leftChildIndex = 2 * index + 1;
-      let rightChildIndex = 2 * index + 1;
-      if (leftChildIndex < this.values.length) {
+      let rightChildIndex = 2 * index + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      if (leftChildIndex < length) {
         leftChild = this.values[leftChildIndex];
         if (leftChild.priority < element.priority) {
           swap = leftChildIndex;
         }
       }
-      if (rightChildIndex < this.values.length) {
+      if (rightChildIndex < length) {
         rightChild = this.values[rightChildIndex];
         if (
           (swap === null && rightChild.priority < element.priority) ||
-          (swap === null && rightChild.priority < leftChild.priority)
+          (swap !== null && rightChild.priority < leftChild.priority)
         ) {
           swap = rightChildIndex;
         }
